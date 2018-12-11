@@ -1,58 +1,36 @@
-/**
- * Load Config
- * it doesn't have @types so we require it
- */
-require('dotenv').config()
+
+import { config } from 'dotenv';
+import Loader from './loader';
+import MongoComponent from '../app/http/components/mongo.component';
+import RedisComponent from '../app/http/components/redis.component';
+import ExpressComponent from '../app/http/components/express.component';
+import Settings from './loader/Settings';
 
 /**
- * Import main Modules
+ * Load Config fromo dotenv
  */
-import "reflect-metadata";
-import { createExpressServer } from "routing-controllers";
-import { connect } from 'mongoose';
-import { ConfigMiddleware } from '../app/http/middlewares/ConfigMiddleware';
+config();
 
-(async () => {
-    try {
-        /**
-         * init DB connection
-         */
-        const uri = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`;
+// Error Handling
+// Logs
 
-        await connect(uri, {
-            dbName: process.env.DB_NAME,
-            useFindAndModify: true,
-            useNewUrlParser: true
-        });
+/**
+ * create new Loader to manage and load all various components of the application
+ */
+const loader = new Loader({});
+/**
+ * load the components in sequence
+ */
+const app = loader.load([
+    // create new connection with MongoDB
+    new MongoComponent(),
 
-        console.log('Database Connected');
-    } catch (e) {
-        throw Error('Failed to connect with DB');
-    }
+    // connect with redis
+    new RedisComponent(),
 
-    /**
-    * create app
-    */
-    // creates express app, registers all controller routes and returns you express app instance
-    const app = createExpressServer({
-        routePrefix: "/api",
-        middlewares: [
-            ConfigMiddleware
-        ],
-        controllers: [
-            `${__dirname}/../app/http/controllers/*`
-        ]
-    });
+    // create Express app with it's routes
+    new ExpressComponent()
+]);
 
-    // run express application on port process.env.APP_PORT
-    app.listen(process.env.APP_PORT, (err: any) => {
-        if (err) {
-            return console.log(err)
-        }
-
-        return console.log(`server is running on http://127.0.0.1:${process.env.APP_PORT}`)
-    });
-
-    // Error Handling
-    // Logs
-})();
+app.then((settings: Settings) => console.log("Application is up and running."));
+app.catch(error => console.log("Application is crashed: " + error));

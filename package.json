@@ -7,7 +7,6 @@
     "dev": "nodemon",
     "ts-node": "ts-node",
     "build": "tsc",
-    "presetup": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -22,18 +21,20 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "mongoose": "^5.3.15",
+    "redis": "^2.8.0",
     "reflect-metadata": "^0.1.12",
     "routing-controllers": "^0.7.7"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/chalk": "^2.2.0",
-    "@types/dotenv": "^4.0.2",
+    "@types/dotenv": "^4.0.3",
     "@types/express": "^4.0.39",
     "@types/jest": "23.3.2",
     "@types/mongodb": "^3.1.15",
     "@types/mongoose": "^5.3.4",
     "@types/morgan": "^1.7.35",
+    "@types/redis": "^2.8.8",
     "jest": "23.6.0",
     "nodemon": "^1.18.7",
     "ts-node": "^7.0.1",
@@ -52,7 +53,7 @@
     "events": {
       "restart": "osascript -e 'display notification \"HCN has been restarted few milliseconds ago.\" with title \"HCN Restart\"'",
       "crash": "osascript -e 'display notification \"HCN crashed on the console.\" with title \"HCN Crashed\"'",
-      "exit": "osascript -e 'display notification \"HCN cleanly exited.\" with title \"HCN Exit\"'"
+      "exit": "osascript -e 'display notification \"HCN cleanly exited.\" with title \"HCN Clean\"'"
     }
   }
 }
