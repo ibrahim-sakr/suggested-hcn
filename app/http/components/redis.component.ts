@@ -1,5 +1,4 @@
-import Settings from '../../../bootstrap/loader/Settings';
-import ComponentInterface from '../../../bootstrap/loader/ComponentInterface';
+import { Settings, ComponentInterface } from 'he-loader';
 import { RedisClient, ClientOpts } from 'redis';
 
 export default class RedisComponent implements ComponentInterface {

@@ -1,6 +1,5 @@
-import Settings from '../../../bootstrap/loader/Settings';
-import ComponentInterface from '../../../bootstrap/loader/ComponentInterface';
 import "reflect-metadata";
+import { Settings, ComponentInterface } from 'he-loader';
 import { createExpressServer } from "routing-controllers";
 import { ConfigMiddleware } from '../middlewares/ConfigMiddleware';
 
@@ -10,7 +9,7 @@ export default class ExpressComponent implements ComponentInterface {
 
     /**
      * init Express Routes
-     * @param settings 
+     * @param settings
      */
     load(settings: Settings) {
         return new Promise((resolve, reject) => {

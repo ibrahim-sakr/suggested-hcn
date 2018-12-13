@@ -5,13 +5,8 @@
         "target": "es6",
         "module": "commonjs",
         "outDir": "dist",
+        "strict": true,
         "sourceMap": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "alwaysStrict": true,
-        "strictBindCallApply": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "strictPropertyInitialization": true,
+        "declaration": true,
     }
 }

@@ -20,6 +20,7 @@
     "chalk": "^2.4.1",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "he-loader": "^1.0.1",
     "mongoose": "^5.3.15",
     "redis": "^2.8.0",
     "reflect-metadata": "^0.1.12",
